@@ -5,11 +5,13 @@ plugins {
     id 'war'
 // end::use-war-plugin[]
 // tag::use-gretty-plugin[]
-    id "org.gretty" version "2.2.0"
+    id "org.gretty" version "2.3.1"
 // tag::use-war-plugin[]
 }
 // end::use-war-plugin[]
 // end::use-gretty-plugin[]
+
+version = '1.0'
 
 repositories {
     jcenter()
@@ -22,4 +24,16 @@ dependencies {
 
 gretty {
     httpPort = 8080
+}
+
+task firstTask {
+    doLast {
+        println "1 This is the first task."
+    }
+}
+
+task secondTask (dependsOn: 'firstTask') {
+    doLast {
+        println "2 This is the second task."
+    }
 }
