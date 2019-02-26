@@ -20,11 +20,12 @@ Vagrant.configure('2') do |config|
     os.image              = ENV['OS_IMAGE']
   end
 
-  config.vm.define 'lin-bionic-beaver' do |s|
+  config.vm.synced_folder "./yml_file", "/home/ubuntu/docker", type: "rsync"
+  
+  config.vm.define 'lin-Beaver' do |s|
     s.vm.provision "docker"
-    s.vm.provision "docker_compose", compose_version: "1.23.2"
     s.vm.provision "shell", inline: "sudo apt install openjdk-11-jdk -y"
-    s.vm.provision "shell", path: "install_jenkins.sh"
+    s.vm.provision "docker_compose", compose_version: "1.23.2", yml: "/home/ubuntu/docker/docker-compose.yml", run: "always"
     s.vm.provider :openstack do |os, override|
       os.server_name = 'AT08-DMONTANOV-JENKINS'
       os.flavor = ENV['OS_FLAVOR']

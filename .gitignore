@@ -4,4 +4,7 @@
 # Ignore Gradle build output directory
 build
 .vagrant
+<<<<<<< HEAD
 gradle-5.2.1
+=======
+>>>>>>> 8d0733da55948a56851be39dea0040b51cde522f
