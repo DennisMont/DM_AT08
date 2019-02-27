@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'git update-index --chmod=+x gradlew'
                 sh './gradle-java-at08/gradlew clean build -p gradle-java-at08'
             }
         }
