@@ -6,3 +6,8 @@ build
 .vagrant
 gradle-5.2.1
 .vscode
+.classpath
+.project
+.settings/
+environment.bat
+windv.pem

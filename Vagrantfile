@@ -20,11 +20,12 @@ Vagrant.configure('2') do |config|
     os.image              = ENV['OS_IMAGE']
   end
 
-  config.vm.synced_folder "./yml_file", "/home/ubuntu/docker", type: "rsync"
+  config.vm.provision 'file', source: './yml_file', destination:'/home/ubuntu/docker'
   
   config.vm.define 'lin-Beaver' do |s|
     s.vm.provision "docker"
     s.vm.provision "shell", inline: "sudo apt install openjdk-11-jdk -y"
+    s.vm.provision "shell", path: "create_jenkins_dir.sh"
     s.vm.provision "docker_compose", compose_version: "1.23.2", yml: "/home/ubuntu/docker/docker-compose.yml", run: "always"
     s.vm.provider :openstack do |os, override|
       os.server_name = 'AT08-DMONTANOV-JENKINS'
