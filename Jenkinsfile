@@ -32,17 +32,17 @@ pipeline {
             }
         }
             
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-                sh './gradle-java-at08/gradlew jar'
-            }
-        }
-
+        
         post {
             always {
                 archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
                 junit 'build/reports/**/*.xml'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }
