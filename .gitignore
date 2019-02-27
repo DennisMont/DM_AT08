@@ -5,3 +5,4 @@
 build
 .vagrant
 gradle-5.2.1
+.vscode
