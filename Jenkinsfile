@@ -66,7 +66,7 @@ pipeline {
         always {
             echo 'Succesfully'
             archiveArtifacts artifacts: 'gradle-java-at08/build/libs/**/*.jar', fingerprint: true
-            junit 'gradle-java-at08/build/reports/**/*.xml'
+            junit 'gradle-java-at08/build/test-results/**/*.xml'
         }
     }
 }
