@@ -65,8 +65,8 @@ pipeline {
     post {
         always {
             echo 'Succesfully'
-            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-                junit 'build/reports/**/*.xml'
+            archiveArtifacts artifacts: 'gradle-java-at08/build/libs/**/*.jar', fingerprint: true
+            junit 'gradle-java-at08/build/reports/**/*.xml'
         }
     }
 }
