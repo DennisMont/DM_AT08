@@ -11,6 +11,23 @@ pipeline {
             }
         }
 
+        //stage('UI Test') {
+        //    parallels {
+        //        stage('Chrome') {
+        //            steps {
+        //                echo 'Testing..'
+        //                sh './gradle-java-at08/gradlew ui_test -Dbrowser='Chrome' -p gradle-java-at08'
+        //            }
+        //        }
+        //        stage('FireFox') {
+        //            steps {
+        //                echo 'Testing..'
+        //                sh './gradle-java-at08/gradlew ui_test -Dbrowser='FireFox' -p gradle-java-at08'
+        //            }
+        //        }
+        //    }
+        //}
+
         stage('Test') {
             steps {
                 echo 'Testing..'
@@ -44,12 +61,12 @@ pipeline {
                 sh './gradle-java-at08/gradlew jar -p gradle-java-at08'
             }
         }
-
-        post {
-            always {
-                archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+    }
+    post {
+        always {
+            echo 'Succesfully'
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
                 junit 'build/reports/**/*.xml'
-            }
         }
     }
 }
